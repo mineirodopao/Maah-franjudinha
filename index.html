@@ -5,13 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#140d1c">
+  <meta name="description" content="Acesse os links da Maah Franjuda.">
   <title>Maah Franjuda</title>
-
-  <!-- Vercel Web Analytics -->
-  <script>
-    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-  </script>
-  <script defer src="/_vercel/insights/script.js"></script>
 
   <style>
     :root {
@@ -39,7 +34,7 @@
       overflow-x: hidden;
     }
 
-    /* FUNDO COM SUA FOTO */
+    /* Fundo desfocado */
     .background {
       position: fixed;
       inset: 0;
@@ -64,7 +59,7 @@
       background:
         radial-gradient(
           circle at 50% 35%,
-          rgba(177, 72, 220, .22),
+          rgba(177, 72, 220, .25),
           transparent 60%
         ),
         linear-gradient(
@@ -74,6 +69,7 @@
         );
     }
 
+    /* Brilhos animados */
     .glow {
       position: fixed;
       z-index: -1;
@@ -103,15 +99,17 @@
       to { transform: translate(30px, -20px); }
     }
 
-    /* CARTÃO PRINCIPAL */
+    /* Cartão principal */
     .container {
       width: 100%;
       max-width: 410px;
       margin: auto;
-      animation: enter .5s ease both;
+      animation: enter .65s ease both;
     }
 
     .card {
+      position: relative;
+      overflow: hidden;
       padding: 30px 23px 22px;
       text-align: center;
       border: 1px solid rgba(255, 255, 255, .14);
@@ -122,7 +120,22 @@
       backdrop-filter: blur(18px);
     }
 
-    /* FOTO DE PERFIL */
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 15%;
+      width: 70%;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 180, 255, .8),
+        transparent
+      );
+    }
+
+    /* Foto de perfil */
     .profile-border {
       width: 120px;
       height: 120px;
@@ -150,8 +163,12 @@
     }
 
     @keyframes photoGlow {
-      from { box-shadow: 0 0 14px rgba(211, 91, 239, .2); }
-      to { box-shadow: 0 0 28px rgba(211, 91, 239, .5); }
+      from {
+        box-shadow: 0 0 14px rgba(211, 91, 239, .2);
+      }
+      to {
+        box-shadow: 0 0 28px rgba(211, 91, 239, .5);
+      }
     }
 
     .eyebrow {
@@ -175,55 +192,60 @@
       line-height: 1.6;
     }
 
-    /* TELAS INTERNAS */
+    /* Telas */
     .screen {
       display: none;
     }
 
     .screen.active {
       display: block;
-      animation: enter .35s ease both;
+      animation: enter .4s ease both;
     }
 
-    .screen-heading {
-      margin: 0 0 9px;
-      font-size: 23px;
-      line-height: 1.25;
+    /* Botão da tela inicial */
+    .preview-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      min-height: 58px;
+      margin-top: 8px;
+      padding: 15px 18px;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, .25);
+      border-radius: 16px;
+      background: linear-gradient(110deg, #ce48a9, #9849dc);
+      box-shadow: 0 8px 24px rgba(161, 62, 188, .25);
+      transition: transform .2s ease, box-shadow .2s ease;
     }
 
-    .screen-description {
-      margin: 0 0 22px;
+    .preview-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(177, 71, 210, .35);
+    }
+
+    .preview-button:active {
+      transform: scale(.985);
+    }
+
+    .preview-message {
+      margin: 12px 0 20px;
       color: var(--muted);
       font-size: 13px;
       line-height: 1.6;
     }
 
-    .back-button {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      margin: 0 0 20px;
-      padding: 7px 0;
-      color: #e8a8f5;
-      font-size: 13px;
-      font-weight: bold;
-      background: transparent;
-      border: 0;
-      cursor: pointer;
-    }
-
-    .back-button:hover {
-      color: white;
-    }
-
-    /* BOTÕES DA PRIMEIRA TELA */
-    .payment-options,
+    /* Botões dos links */
     .destination-options {
       display: grid;
       gap: 12px;
     }
 
-    .payment-button,
     .destination-button {
       display: flex;
       align-items: center;
@@ -234,7 +256,7 @@
       color: white;
       text-align: left;
       text-decoration: none;
-      border: 1px solid rgba(255, 255, 255, .15);
+      border: 1px solid rgba(255, 255, 255, .18);
       border-radius: 16px;
       background: linear-gradient(110deg, #ce48a9, #9849dc);
       box-shadow: 0 8px 24px rgba(161, 62, 188, .16);
@@ -243,37 +265,30 @@
         box-shadow .2s ease,
         border-color .2s ease,
         background .2s ease;
-      cursor: pointer;
       font-family: inherit;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .payment-button:hover,
     .destination-button:hover {
-      transform: translateY(-2px);
-      border-color: rgba(255, 255, 255, .38);
-      box-shadow: 0 12px 30px rgba(177, 71, 210, .25);
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, .45);
+      box-shadow: 0 12px 30px rgba(177, 71, 210, .3);
     }
 
-    .payment-button:focus-visible,
-    .destination-button:focus-visible,
-    .back-button:focus-visible {
-      outline: 2px solid white;
-      outline-offset: 4px;
+    .destination-button:active {
+      transform: scale(.985);
     }
 
-    .payment-button.international,
     .destination-button.secondary {
       background: rgba(255, 255, 255, .055);
       border-color: rgba(255, 255, 255, .18);
       box-shadow: none;
     }
 
-    .payment-button.international:hover,
     .destination-button.secondary:hover {
       background: rgba(255, 255, 255, .11);
     }
 
-    .payment-icon,
     .destination-icon {
       display: flex;
       flex: 0 0 43px;
@@ -286,13 +301,11 @@
       font-size: 22px;
     }
 
-    .payment-text,
     .destination-text {
       flex: 1;
       min-width: 0;
     }
 
-    .payment-title,
     .destination-title {
       display: block;
       font-size: 14px;
@@ -300,7 +313,6 @@
       line-height: 1.4;
     }
 
-    .payment-description,
     .destination-description {
       display: block;
       margin-top: 5px;
@@ -315,6 +327,23 @@
       opacity: .8;
     }
 
+    .back-button {
+      display: block;
+      margin: 0 auto 16px;
+      padding: 8px 12px;
+      color: #e8a8f5;
+      font-size: 13px;
+      font-weight: bold;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .back-button:hover {
+      color: white;
+    }
+
     .footer {
       margin: 20px 0 0;
       color: rgba(255, 255, 255, .48);
@@ -325,7 +354,7 @@
     @keyframes enter {
       from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(12px);
       }
       to {
         opacity: 1;
@@ -363,7 +392,7 @@
   <main class="container">
     <section class="card">
 
-      <!-- CABEÇALHO FIXO -->
+      <!-- Cabeçalho fixo -->
       <header>
         <div class="profile-border">
           <img
@@ -377,143 +406,77 @@
         <h1>Maah Franjuda</h1>
       </header>
 
-      <!-- TELA INICIAL -->
-      <section class="screen active" id="homeScreen">
-        <p class="subtitle">Escolha uma opção abaixo.</p>
+      <!-- Primeira tela -->
+      <section class="screen active" id="welcomeScreen">
+        <p class="subtitle">
+          Preparei uma prévia para você. ✨
+        </p>
 
-        <div class="payment-options">
-          <button
-            class="payment-button"
-            type="button"
-            onclick="showScreen('brScreen')"
-          >
-            <span class="payment-icon" aria-hidden="true">❖</span>
-            <span class="payment-text">
-              <span class="payment-title">Pagamento em pix</span>
-              <span class="payment-description">Brasil · BRL</span>
-            </span>
-            <span class="arrow" aria-hidden="true">›</span>
-          </button>
+        <button
+          class="preview-button"
+          id="previewButton"
+          type="button"
+          aria-controls="linksScreen"
+        >
+          ✨ Desbloqueie a prévia
+          <span aria-hidden="true">→</span>
+        </button>
+      </section>
 
-          <button
-            class="payment-button international"
-            type="button"
-            onclick="showScreen('cardScreen')"
+      <!-- Segunda tela: links de exemplo -->
+      <section
+        class="screen"
+        id="linksScreen"
+        aria-hidden="true"
+      >
+        <button
+          class="back-button"
+          id="backButton"
+          type="button"
+        >
+          ← Voltar
+        </button>
+
+        <p class="subtitle">
+          Escolha uma das opções abaixo para continuar.
+        </p>
+
+        <nav
+          class="destination-options"
+          aria-label="Links principais"
+        >
+          <a
+            class="destination-button"
+            href="https://t.me/maah_franjuda_bot"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <span class="payment-icon" aria-hidden="true">💳</span>
-            <span class="payment-text">
-              <span class="payment-title">Cartão</span>
-              <span class="payment-description">
-                Brasil e outros países*
+            <span class="destination-icon" aria-hidden="true">✨</span>
+            <span class="destination-text">
+              <span class="destination-title">Grupo Vip</span>
+              <span class="destination-description">
+                Acesse a página da comunidade
               </span>
             </span>
             <span class="arrow" aria-hidden="true">›</span>
-          </button>
-        </div>
-      </section>
-
-      <!-- TELA DE PAGAMENTO EM REAIS -->
-      <section class="screen" id="brScreen" aria-hidden="true">
-        <button
-          class="back-button"
-          type="button"
-          onclick="showScreen('homeScreen')"
-        >
-          <span aria-hidden="true">←</span> Voltar
-        </button>
-
-        <h2 class="screen-heading">Pagamento em reais</h2>
-        <p class="screen-description">
-          Escolha a opção que deseja acessar.
-        </p>
-
-        <div class="destination-options">
-          <a
-            class="destination-button"
-            id="brOptionOne"
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-configurable-link
-          >
-            <span class="destination-icon" aria-hidden="true">✨</span>
-            <span class="destination-text">
-              <span class="destination-title">Meu Grupo Vip</span>
-              <span class="destination-description"></span>
-            </span>
-            <span class="arrow" aria-hidden="true">›</span>
           </a>
 
           <a
             class="destination-button secondary"
-            id="brOptionTwo"
-            href="#"
+            href="https://privacy.com.br/@maah_franjudinha"
             target="_blank"
             rel="noopener noreferrer"
-            data-configurable-link
           >
-            <span class="destination-icon" aria-hidden="true">🍊</span>
+            <span class="destination-icon" aria-hidden="true">🔒</span>
             <span class="destination-text">
-              <span class="destination-title">Meu Privacy</span>
-              <span class="destination-description"></span>
+              <span class="destination-title">Privacy</span>
+              <span class="destination-description">
+                Visite minha página principal
+              </span>
             </span>
             <span class="arrow" aria-hidden="true">›</span>
           </a>
-        </div>
-      </section>
-
-      <!-- TELA DE CARTÃO -->
-      <section class="screen" id="cardScreen" aria-hidden="true">
-        <button
-          class="back-button"
-          type="button"
-          onclick="showScreen('homeScreen')"
-        >
-          <span aria-hidden="true">←</span> Voltar
-        </button>
-
-        <h2 class="screen-heading">Cartão de crédito</h2>
-        <p class="screen-description">
-          Escolha uma das opções disponíveis.
-        </p>
-
-        <div class="destination-options">
-          <a
-            class="destination-button"
-            id="cardOptionOne"
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-configurable-link
-          >
-            <span class="destination-icon" aria-hidden="true">✨</span>
-            <span class="destination-text">
-              <span class="destination-title">Meu Grupo Vip</span>
-              <span class="destination-description"></span>
-            </span>
-            <span class="arrow" aria-hidden="true">›</span>
-          </a>
-
-          <a
-            class="destination-button secondary"
-            id="cardOptionTwo"
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-configurable-link
-          >
-            <span class="destination-icon" aria-hidden="true">🍊</span>
-            <span class="destination-text">
-              <span class="destination-title">Meu Privacy</span>
-              <span class="destination-description"></span>
-            </span>
-            <span class="arrow" aria-hidden="true">›</span>
-          </a>
-        </div>
-
-        <p class="screen-description" style="margin-top: 18px; margin-bottom: 0; font-size: 11px;">
-          *A disponibilidade depende dos meios de pagamento aceitos pelo checkout.
-        </p>
+        </nav>
       </section>
 
       <p class="footer">FEITO COM ✦ CARINHO</p>
@@ -521,78 +484,28 @@
   </main>
 
   <script>
-    /*
-      CONFIGURAÇÃO DOS LINKS
+    const welcomeScreen = document.getElementById("welcomeScreen");
+    const linksScreen = document.getElementById("linksScreen");
+    const previewButton = document.getElementById("previewButton");
+    const backButton = document.getElementById("backButton");
 
-      Substitua os valores abaixo pelos endereços corretos.
-      Cada botão tem seu próprio link.
-    */
-    const links = {
-      brOptionOne: "https://t.me/maah_franjuda_bot",
-      brOptionTwo: "https://privacy.com.br/checkout/maah_franjudinha",
-      cardOptionOne: "https://t.me/maahfranjuda_bot",
-      cardOptionTwo: "https://privacy.com.br/checkout/maah_franjudinha"
-    };
-
-    // Aplica os destinos configurados.
-    Object.entries(links).forEach(([id, url]) => {
-      const link = document.getElementById(id);
-
-      if (link && url.trim() !== "") {
-        link.href = url;
-      } else if (link) {
-        // Não deixa um botão sem configuração levar a uma página vazia.
-        link.addEventListener("click", function (event) {
-          event.preventDefault();
-        });
-
-        link.style.opacity = "0.75";
-      }
-    });
-
-    // Alterna as telas sem sair do mesmo endereço.
-    function showScreen(screenId) {
-      const screens = document.querySelectorAll(".screen");
-      const target = document.getElementById(screenId);
-
-      if (!target) return;
+    function showScreen(screenToShow) {
+      const screens = [welcomeScreen, linksScreen];
 
       screens.forEach((screen) => {
-        screen.classList.remove("active");
-        screen.setAttribute("aria-hidden", "true");
-      });
-
-      target.classList.add("active");
-      target.setAttribute("aria-hidden", "false");
-
-      // Atualiza o histórico para permitir voltar com o navegador.
-      if (window.location.hash !== "#" + screenId) {
-        history.pushState({ screen: screenId }, "", "#" + screenId);
-      }
-    }
-
-    // Suporte aos botões Voltar/Avançar do navegador.
-    function restoreScreenFromHash() {
-      const screenId = window.location.hash.slice(1);
-      const validScreens = ["homeScreen", "brScreen", "cardScreen"];
-
-      const selectedScreen = validScreens.includes(screenId)
-        ? screenId
-        : "homeScreen";
-
-      const screens = document.querySelectorAll(".screen");
-
-      screens.forEach((screen) => {
-        const isActive = screen.id === selectedScreen;
+        const isActive = screen === screenToShow;
         screen.classList.toggle("active", isActive);
         screen.setAttribute("aria-hidden", String(!isActive));
       });
     }
 
-    window.addEventListener("popstate", restoreScreenFromHash);
-    window.addEventListener("hashchange", restoreScreenFromHash);
+    previewButton.addEventListener("click", () => {
+      showScreen(linksScreen);
+    });
 
-    restoreScreenFromHash();
+    backButton.addEventListener("click", () => {
+      showScreen(welcomeScreen);
+    });
   </script>
 </body>
 </html>
