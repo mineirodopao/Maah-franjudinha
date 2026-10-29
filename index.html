@@ -5,13 +5,385 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#140d1c">
+  <meta name="description" content="Acesse os links da Maah Franjuda.">
   <title>Maah Franjuda</title>
-
-  <!-- Vercel Web Analytics -->
   <script defer src="/app.js"></script>
   <script defer src="/_vercel/insights/script.js"></script>
 
-  <link rel="stylesheet" href="/styles.css">
+  <style>
+    :root {
+      --pink: #e65bc1;
+      --purple: #a452e5;
+      --text: #fff8ff;
+      --muted: #cbbbd5;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100svh;
+      padding: 24px 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: #140d1c;
+      overflow-x: hidden;
+    }
+
+    /* Fundo desfocado */
+    .background {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      overflow: hidden;
+      background: #140d1c;
+    }
+
+    .background::before {
+      content: "";
+      position: absolute;
+      inset: -20px;
+      background: url("./fundo.JPEG") center / cover no-repeat;
+      filter: blur(18px) brightness(.43) saturate(1.15);
+      transform: scale(1.06);
+    }
+
+    .background::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(
+          circle at 50% 35%,
+          rgba(177, 72, 220, .25),
+          transparent 60%
+        ),
+        linear-gradient(
+          180deg,
+          rgba(15, 8, 21, .35),
+          rgba(15, 8, 21, .78)
+        );
+    }
+
+    /* Brilhos animados */
+    .glow {
+      position: fixed;
+      z-index: -1;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: rgba(190, 65, 255, .20);
+      filter: blur(85px);
+      pointer-events: none;
+      animation: glowMove 9s ease-in-out infinite alternate;
+    }
+
+    .glow.one {
+      top: 5%;
+      left: -100px;
+    }
+
+    .glow.two {
+      right: -100px;
+      bottom: 5%;
+      background: rgba(245, 70, 190, .18);
+      animation-delay: -4s;
+    }
+
+    @keyframes glowMove {
+      from { transform: translate(0, 0); }
+      to { transform: translate(30px, -20px); }
+    }
+
+    /* Cartão principal */
+    .container {
+      width: 100%;
+      max-width: 410px;
+      margin: auto;
+      animation: enter .65s ease both;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      padding: 30px 23px 22px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 27px;
+      background: rgba(27, 17, 35, .80);
+      box-shadow: 0 20px 70px rgba(0, 0, 0, .30);
+      -webkit-backdrop-filter: blur(18px);
+      backdrop-filter: blur(18px);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 15%;
+      width: 70%;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 180, 255, .8),
+        transparent
+      );
+    }
+
+    /* Foto de perfil */
+    .profile-border {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 20px;
+      padding: 5px;
+      border-radius: 50%;
+      background: linear-gradient(
+        135deg,
+        #ff72cf,
+        #a452e5,
+        #f4b9ff
+      );
+      box-shadow: 0 0 25px rgba(211, 91, 239, .35);
+      animation: photoGlow 3s ease-in-out infinite alternate;
+    }
+
+    .profile {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border: 3px solid #21152a;
+      border-radius: 50%;
+    }
+
+    @keyframes photoGlow {
+      from {
+        box-shadow: 0 0 14px rgba(211, 91, 239, .2);
+      }
+      to {
+        box-shadow: 0 0 28px rgba(211, 91, 239, .5);
+      }
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: #e8a8f5;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 2.5px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(27px, 7vw, 34px);
+      letter-spacing: -.7px;
+    }
+
+    .subtitle {
+      margin: 12px 0 24px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* Telas */
+    .screen {
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+      animation: enter .4s ease both;
+    }
+
+    /* Botão da tela inicial */
+    .preview-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      min-height: 58px;
+      margin-top: 8px;
+      padding: 15px 18px;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, .25);
+      border-radius: 16px;
+      background: linear-gradient(110deg, #ce48a9, #9849dc);
+      box-shadow: 0 8px 24px rgba(161, 62, 188, .25);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .preview-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(177, 71, 210, .35);
+    }
+
+    .preview-button:active {
+      transform: scale(.985);
+    }
+
+    .preview-message {
+      margin: 12px 0 20px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    /* Botões dos links */
+    .destination-options {
+      display: grid;
+      gap: 12px;
+    }
+
+    .destination-button {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      width: 100%;
+      min-height: 70px;
+      padding: 13px 15px;
+      color: white;
+      text-align: left;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, .18);
+      border-radius: 16px;
+      background: linear-gradient(110deg, #ce48a9, #9849dc);
+      box-shadow: 0 8px 24px rgba(161, 62, 188, .16);
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        border-color .2s ease,
+        background .2s ease;
+      font-family: inherit;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .destination-button:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, .45);
+      box-shadow: 0 12px 30px rgba(177, 71, 210, .3);
+    }
+
+    .destination-button:active {
+      transform: scale(.985);
+    }
+
+    .destination-button.secondary {
+      background: rgba(255, 255, 255, .055);
+      border-color: rgba(255, 255, 255, .18);
+      box-shadow: none;
+    }
+
+    .destination-button.secondary:hover {
+      background: rgba(255, 255, 255, .11);
+    }
+
+    .destination-icon {
+      display: flex;
+      flex: 0 0 43px;
+      width: 43px;
+      height: 43px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, .15);
+      font-size: 22px;
+    }
+
+    .destination-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .destination-title {
+      display: block;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 1.4;
+    }
+
+    .destination-description {
+      display: block;
+      margin-top: 5px;
+      color: #e2d4eb;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    .arrow {
+      color: #fff;
+      font-size: 22px;
+      opacity: .8;
+    }
+
+    .back-button {
+      display: block;
+      margin: 0 auto 16px;
+      padding: 8px 12px;
+      color: #e8a8f5;
+      font-size: 13px;
+      font-weight: bold;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .back-button:hover {
+      color: white;
+    }
+
+    .footer {
+      margin: 20px 0 0;
+      color: rgba(255, 255, 255, .48);
+      font-size: 10px;
+      letter-spacing: .6px;
+    }
+
+    @keyframes enter {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 380px) {
+      .card {
+        padding: 25px 16px 20px;
+      }
+
+      .profile-border {
+        width: 105px;
+        height: 105px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -22,12 +394,12 @@
   <main class="container">
     <section class="card">
 
-      <!-- CABEÇALHO FIXO -->
+      <!-- Cabeçalho fixo -->
       <header>
         <div class="profile-border">
           <img
             class="profile"
-            src="./perfil.jpeg"
+            src="./perfil.JPEG"
             alt="Foto de perfil"
           >
         </div>
@@ -36,143 +408,77 @@
         <h1>Maah Franjuda</h1>
       </header>
 
-      <!-- TELA INICIAL -->
-      <section class="screen active" id="homeScreen">
-        <p class="subtitle">Escolha uma opção abaixo.</p>
+      <!-- Primeira tela -->
+      <section class="screen active" id="welcomeScreen">
+        <p class="subtitle">
+          Preparei uma prévia para você. ✨
+        </p>
 
-        <div class="payment-options">
-          <button
-            class="payment-button"
-            type="button"
-            data-screen="brScreen"
-          >
-            <span class="payment-icon" aria-hidden="true">❖</span>
-            <span class="payment-text">
-              <span class="payment-title">Pagamento em pix</span>
-              <span class="payment-description">Brasil · BRL</span>
-            </span>
-            <span class="arrow" aria-hidden="true">›</span>
-          </button>
+        <button
+          class="preview-button"
+          id="previewButton"
+          type="button"
+          aria-controls="linksScreen"
+        >
+          ✨ Desbloqueie a prévia
+          <span aria-hidden="true">→</span>
+        </button>
+      </section>
 
-          <button
-            class="payment-button international"
-            type="button"
-            data-screen="cardScreen"
+      <!-- Segunda tela: links de exemplo -->
+      <section
+        class="screen"
+        id="linksScreen"
+        aria-hidden="true"
+      >
+        <button
+          class="back-button"
+          id="backButton"
+          type="button"
+        >
+          ← Voltar
+        </button>
+
+        <p class="subtitle">
+          Escolha uma das opções abaixo para continuar.
+        </p>
+
+        <nav
+          class="destination-options"
+          aria-label="Links principais"
+        >
+          <a
+            class="destination-button"
+            href="https://t.me/maah_franjuda_bot"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <span class="payment-icon" aria-hidden="true">💳</span>
-            <span class="payment-text">
-              <span class="payment-title">Cartão</span>
-              <span class="payment-description">
-                Brasil e outros países*
+            <span class="destination-icon" aria-hidden="true">✨</span>
+            <span class="destination-text">
+              <span class="destination-title">Grupo Vip</span>
+              <span class="destination-description">
+                Acesse a página da comunidade
               </span>
             </span>
             <span class="arrow" aria-hidden="true">›</span>
-          </button>
-        </div>
-      </section>
-
-      <!-- TELA DE PAGAMENTO EM REAIS -->
-      <section class="screen" id="brScreen" aria-hidden="true">
-        <button
-          class="back-button"
-          type="button"
-          data-screen="homeScreen"
-        >
-          <span aria-hidden="true">←</span> Voltar
-        </button>
-
-        <h2 class="screen-heading">Pagamento em reais</h2>
-        <p class="screen-description">
-          Escolha a opção que deseja acessar.
-        </p>
-
-        <div class="destination-options">
-          <a
-            class="destination-button"
-            id="brOptionOne"
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-configurable-link
-          >
-            <span class="destination-icon" aria-hidden="true">✨</span>
-            <span class="destination-text">
-              <span class="destination-title">Meu Grupo Vip</span>
-              <span class="destination-description"></span>
-            </span>
-            <span class="arrow" aria-hidden="true">›</span>
           </a>
 
           <a
             class="destination-button secondary"
-            id="brOptionTwo"
-            href="#"
+            href="https://privacy.com.br/@maah_franjudinha"
             target="_blank"
             rel="noopener noreferrer"
-            data-configurable-link
           >
-            <span class="destination-icon" aria-hidden="true">🍊</span>
+            <span class="destination-icon" aria-hidden="true">🔒</span>
             <span class="destination-text">
-              <span class="destination-title">Meu Privacy</span>
-              <span class="destination-description"></span>
+              <span class="destination-title">Privacy</span>
+              <span class="destination-description">
+                Visite minha página principal
+              </span>
             </span>
             <span class="arrow" aria-hidden="true">›</span>
           </a>
-        </div>
-      </section>
-
-      <!-- TELA DE CARTÃO -->
-      <section class="screen" id="cardScreen" aria-hidden="true">
-        <button
-          class="back-button"
-          type="button"
-          data-screen="homeScreen"
-        >
-          <span aria-hidden="true">←</span> Voltar
-        </button>
-
-        <h2 class="screen-heading">Cartão de crédito</h2>
-        <p class="screen-description">
-          Escolha uma das opções disponíveis.
-        </p>
-
-        <div class="destination-options">
-          <a
-            class="destination-button"
-            id="cardOptionOne"
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-configurable-link
-          >
-            <span class="destination-icon" aria-hidden="true">✨</span>
-            <span class="destination-text">
-              <span class="destination-title">Meu Grupo Vip</span>
-              <span class="destination-description"></span>
-            </span>
-            <span class="arrow" aria-hidden="true">›</span>
-          </a>
-
-          <a
-            class="destination-button secondary"
-            id="cardOptionTwo"
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-configurable-link
-          >
-            <span class="destination-icon" aria-hidden="true">🍊</span>
-            <span class="destination-text">
-              <span class="destination-title">Meu Privacy</span>
-              <span class="destination-description"></span>
-            </span>
-            <span class="arrow" aria-hidden="true">›</span>
-          </a>
-        </div>
-
-        <p class="screen-description availability-note">
-          *A disponibilidade depende dos meios de pagamento aceitos pelo checkout.
-        </p>
+        </nav>
       </section>
 
       <p class="footer">FEITO COM ✦ CARINHO</p>

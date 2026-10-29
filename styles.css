@@ -35,7 +35,7 @@ body {
   content: "";
   position: absolute;
   inset: -20px;
-  background: url("./fundo.jpeg") center / cover no-repeat;
+  background: url("./fundo.JPEG") center / cover no-repeat;
   filter: blur(18px) brightness(.43) saturate(1.15);
   transform: scale(1.06);
 }
