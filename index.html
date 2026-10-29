@@ -7,6 +7,8 @@
   <meta name="theme-color" content="#140d1c">
   <meta name="description" content="Acesse os links da Maah Franjuda.">
   <title>Maah Franjuda</title>
+  <script defer src="/app.js"></script>
+  <script defer src="/_vercel/insights/script.js"></script>
 
   <style>
     :root {
@@ -47,7 +49,7 @@
       content: "";
       position: absolute;
       inset: -20px;
-      background: url("./fundo.jpeg") center / cover no-repeat;
+      background: url("./fundo.JPEG") center / cover no-repeat;
       filter: blur(18px) brightness(.43) saturate(1.15);
       transform: scale(1.06);
     }
@@ -397,7 +399,7 @@
         <div class="profile-border">
           <img
             class="profile"
-            src="./perfil.jpeg"
+            src="./perfil.JPEG"
             alt="Foto de perfil"
           >
         </div>
@@ -483,29 +485,5 @@
     </section>
   </main>
 
-  <script>
-    const welcomeScreen = document.getElementById("welcomeScreen");
-    const linksScreen = document.getElementById("linksScreen");
-    const previewButton = document.getElementById("previewButton");
-    const backButton = document.getElementById("backButton");
-
-    function showScreen(screenToShow) {
-      const screens = [welcomeScreen, linksScreen];
-
-      screens.forEach((screen) => {
-        const isActive = screen === screenToShow;
-        screen.classList.toggle("active", isActive);
-        screen.setAttribute("aria-hidden", String(!isActive));
-      });
-    }
-
-    previewButton.addEventListener("click", () => {
-      showScreen(linksScreen);
-    });
-
-    backButton.addEventListener("click", () => {
-      showScreen(welcomeScreen);
-    });
-  </script>
 </body>
 </html>
