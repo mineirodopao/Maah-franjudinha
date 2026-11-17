@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -7,7 +6,6 @@
   <meta name="theme-color" content="#140d1c">
   <meta name="description" content="Acesse os links da Maah Franjuda.">
   <title>Maah Franjuda</title>
-  <script defer src="/app.js"></script>
   <script defer src="/_vercel/insights/script.js"></script>
 
   <style>
@@ -364,82 +362,6 @@
       }
     }
 
-
-    /* Aviso discreto para orientar a abertura no navegador */
-    .browser-tip {
-      position: fixed;
-      top: 14px;
-      right: 12px;
-      z-index: 20;
-      width: min(278px, calc(100vw - 28px));
-      padding: 14px 16px;
-      color: #fff8ff;
-      text-align: left;
-      font-size: 12px;
-      font-weight: 500;
-      line-height: 1.55;
-      background: rgba( thirty, 18, 39, .96);
-      background: rgba(30, 18, 39, .96);
-      border: 1px solid rgba(255, 255, 255, .2);
-      border-left: 3px solid #f05a9d;
-      border-radius: 13px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
-      -webkit-backdrop-filter: blur(12px);
-      backdrop-filter: blur(12px);
-      animation: tipPulse 2.8s ease-in-out infinite;
-    }
-
-    .browser-tip strong {
-      color: #ff9acb;
-      font-weight: 700;
-    }
-
-    .browser-tip::before {
-      content: "";
-      position: absolute;
-      top: -11px;
-      right: 18px;
-      width: 15px;
-      height: 15px;
-      border-top: 3px solid #f05a9d;
-      border-right: 3px solid #f05a9d;
-      transform: rotate(-12deg);
-    }
-
-    .browser-tip::after {
-      content: "";
-      position: absolute;
-      top: -27px;
-      right: 26px;
-      width: 3px;
-      height: 20px;
-      border-radius: 3px;
-      background: #f05a9d;
-      transform: rotate(35deg);
-      transform-origin: bottom;
-    }
-
-    @keyframes tipPulse {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(3px); }
-    }
-
-    @media (max-width: 380px) {
-      .browser-tip {
-        top: 10px;
-        right: 10px;
-        width: min(250px, calc(100vw - 20px));
-        padding: 12px 13px;
-        font-size: 11px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .browser-tip {
-        animation: none !important;
-      }
-    }
-
     @media (max-width: 380px) {
       .card {
         padding: 25px 16px 20px;
@@ -459,6 +381,67 @@
         transition: none !important;
       }
     }
+
+    /* Orientação no topo, como na referência */
+    body { flex-direction: column; align-items: center; }
+    .container { margin: 0 auto; }
+    .browser-guide {
+      position: relative;
+      width: min(100%, 410px);
+      margin: 0 auto 18px;
+      padding: 12px 12px 15px;
+      text-align: center;
+      color: #fff8ff;
+      background: rgba(22, 12, 29, .84);
+      border: 1px solid rgba(255, 255, 255, .13);
+      border-radius: 20px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, .25);
+      backdrop-filter: blur(12px);
+    }
+    .browser-guide-menu {
+      position: relative;
+      width: 90%;
+      margin: 0 auto 9px;
+      padding: 12px 15px;
+      transform: rotate(-4deg);
+      background: #fff;
+      color: #211b21;
+      font-size: 15px;
+      font-weight: 800;
+      border-radius: 9px;
+      box-shadow: 0 7px 20px rgba(0,0,0,.3);
+    }
+    .browser-guide-menu::after {
+      content: "";
+      position: absolute;
+      inset: 3px 9px;
+      border: 4px solid #f02b44;
+      border-radius: 50%;
+      transform: rotate(4deg);
+      pointer-events: none;
+    }
+    .browser-guide-arrow {
+      position: absolute;
+      top: -52px;
+      right: 2px;
+      width: 102px;
+      height: 74px;
+      color: #f02b44;
+      pointer-events: none;
+      overflow: visible;
+    }
+    .browser-guide-label {
+      margin: 0;
+      color: #f5d2e7;
+      font-size: 12px;
+      line-height: 1.55;
+      letter-spacing: .15px;
+    }
+    .browser-guide-label strong { color: #fff; }
+    @media (max-width: 380px) {
+      .browser-guide-menu { font-size: 13px; }
+      .browser-guide-arrow { width: 85px; right: 0; }
+    }
   </style>
 </head>
 
@@ -467,10 +450,18 @@
   <div class="glow one" aria-hidden="true"></div>
   <div class="glow two" aria-hidden="true"></div>
 
-  <!-- Aviso visual: abrir no navegador -->
-  <aside class="browser-tip" role="note" aria-label="Como abrir esta página no navegador">
-    Para uma melhor experiência, toque nos <strong>três pontinhos</strong> no alto
-    da tela e selecione <strong>“Abrir no navegador”</strong> caso o link não carregue.
+  <!-- Dica no alto da página, apontando para o menu do Instagram -->
+  <aside class="browser-guide" role="note" aria-label="Como abrir no navegador">
+    <svg class="browser-guide-arrow" viewBox="0 0 102 74" aria-hidden="true">
+      <path d="M4 63 C43 68 75 48 91 6 M73 12 L91 6 L94 26"
+            fill="none" stroke="currentColor" stroke-width="6"
+            stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+    <div class="browser-guide-menu" aria-hidden="true">◉ &nbsp; Abrir no navegador</div>
+    <p class="browser-guide-label">
+      Se algum link não funcionar, clique nos <strong>3 pontinhos lá em cima</strong>
+      e escolha <strong>“Abrir no navegador”</strong>.
+    </p>
   </aside>
 
   <main class="container">
@@ -563,9 +554,45 @@
         </nav>
       </section>
 
+
       <p class="footer">FEITO COM ✦ CARINHO</p>
     </section>
   </main>
 
+
+  <!-- Navegação integrada: funciona sem depender de app.js -->
+  <script>
+    (function () {
+      function initNavigation() {
+        const welcomeScreen = document.getElementById("welcomeScreen");
+        const linksScreen = document.getElementById("linksScreen");
+        const previewButton = document.getElementById("previewButton");
+        const backButton = document.getElementById("backButton");
+
+        if (!welcomeScreen || !linksScreen || !previewButton || !backButton) return;
+
+        function showScreen(activeScreen) {
+          [welcomeScreen, linksScreen].forEach(function (screen) {
+            const active = screen === activeScreen;
+            screen.classList.toggle("active", active);
+            screen.setAttribute("aria-hidden", String(!active));
+          });
+        }
+
+        previewButton.addEventListener("click", function () {
+          showScreen(linksScreen);
+        });
+        backButton.addEventListener("click", function () {
+          showScreen(welcomeScreen);
+        });
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initNavigation);
+      } else {
+        initNavigation();
+      }
+    })();
+  </script>
 </body>
 </html>
