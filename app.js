@@ -1,31 +1,28 @@
-    (function () {
-      function initNavigation() {
-        const welcomeScreen = document.getElementById("welcomeScreen");
-        const linksScreen = document.getElementById("linksScreen");
-        const previewButton = document.getElementById("previewButton");
-        const backButton = document.getElementById("backButton");
+window.va = window.va || function () {
+  (window.vaq = window.vaq || []).push(arguments);
+};
 
-        if (!welcomeScreen || !linksScreen || !previewButton || !backButton) return;
+(function () {
+  function iniciar() {
+    const welcomeScreen = document.getElementById("welcomeScreen");
+    const linksScreen = document.getElementById("linksScreen");
+    const previewButton = document.getElementById("previewButton");
+    const backButton = document.getElementById("backButton");
+    if (!welcomeScreen || !linksScreen || !previewButton || !backButton) return;
 
-        function showScreen(activeScreen) {
-          [welcomeScreen, linksScreen].forEach(function (screen) {
-            const active = screen === activeScreen;
-            screen.classList.toggle("active", active);
-            screen.setAttribute("aria-hidden", String(!active));
-          });
-        }
-
-        previewButton.addEventListener("click", function () {
-          showScreen(linksScreen);
-        });
-        backButton.addEventListener("click", function () {
-          showScreen(welcomeScreen);
-        });
-      }
-
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initNavigation);
-      } else {
-        initNavigation();
-      }
-    })();
+    function showScreen(screenToShow) {
+      [welcomeScreen, linksScreen].forEach((screen) => {
+        const isActive = screen === screenToShow;
+        screen.classList.toggle("active", isActive);
+        screen.setAttribute("aria-hidden", String(!isActive));
+      });
+    }
+    previewButton.addEventListener("click", () => showScreen(linksScreen));
+    backButton.addEventListener("click", () => showScreen(welcomeScreen));
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", iniciar);
+  } else {
+    iniciar();
+  }
+})();
