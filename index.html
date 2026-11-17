@@ -364,6 +364,82 @@
       }
     }
 
+
+    /* Aviso discreto para orientar a abertura no navegador */
+    .browser-tip {
+      position: fixed;
+      top: 14px;
+      right: 12px;
+      z-index: 20;
+      width: min(278px, calc(100vw - 28px));
+      padding: 14px 16px;
+      color: #fff8ff;
+      text-align: left;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.55;
+      background: rgba( thirty, 18, 39, .96);
+      background: rgba(30, 18, 39, .96);
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-left: 3px solid #f05a9d;
+      border-radius: 13px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      animation: tipPulse 2.8s ease-in-out infinite;
+    }
+
+    .browser-tip strong {
+      color: #ff9acb;
+      font-weight: 700;
+    }
+
+    .browser-tip::before {
+      content: "";
+      position: absolute;
+      top: -11px;
+      right: 18px;
+      width: 15px;
+      height: 15px;
+      border-top: 3px solid #f05a9d;
+      border-right: 3px solid #f05a9d;
+      transform: rotate(-12deg);
+    }
+
+    .browser-tip::after {
+      content: "";
+      position: absolute;
+      top: -27px;
+      right: 26px;
+      width: 3px;
+      height: 20px;
+      border-radius: 3px;
+      background: #f05a9d;
+      transform: rotate(35deg);
+      transform-origin: bottom;
+    }
+
+    @keyframes tipPulse {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(3px); }
+    }
+
+    @media (max-width: 380px) {
+      .browser-tip {
+        top: 10px;
+        right: 10px;
+        width: min(250px, calc(100vw - 20px));
+        padding: 12px 13px;
+        font-size: 11px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .browser-tip {
+        animation: none !important;
+      }
+    }
+
     @media (max-width: 380px) {
       .card {
         padding: 25px 16px 20px;
@@ -390,6 +466,12 @@
   <div class="background" aria-hidden="true"></div>
   <div class="glow one" aria-hidden="true"></div>
   <div class="glow two" aria-hidden="true"></div>
+
+  <!-- Aviso visual: abrir no navegador -->
+  <aside class="browser-tip" role="note" aria-label="Como abrir esta página no navegador">
+    Para uma melhor experiência, toque nos <strong>três pontinhos</strong> no alto
+    da tela e selecione <strong>“Abrir no navegador”</strong> caso o link não carregue.
+  </aside>
 
   <main class="container">
     <section class="card">
