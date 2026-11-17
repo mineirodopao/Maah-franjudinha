@@ -371,37 +371,41 @@
       }
     }
 
-/* Dica no topo, sem deslocar o cartão ou alterar os botões */
-.browser-tip {
-  position: fixed;
-  z-index: 10;
-  top: 22px;
-  right: 24px;
-  width: min(290px, calc(100vw - 32px));
-  padding: 12px 14px;
-  border: 1px solid rgba(246, 158, 209, .5);
-  border-radius: 14px;
-  background: rgba(27, 17, 35, .94);
-  color: #fff8ff;
-  box-shadow: 0 12px 32px rgba(0,0,0,.25);
-  font-size: 12px;
-  line-height: 1.5;
-  text-align: left;
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-}
-.browser-tip strong { color: #ffa5d5; }
-.browser-tip .tip-arrow {
-  position: absolute;
-  top: -27px;
-  right: 10px;
-  width: 44px;
-  height: 31px;
-  overflow: visible;
-  pointer-events: none;
-}
-.browser-tip .tip-arrow path { fill: none; stroke: #f75a9b; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+/* Aviso compacto, somente em telas de celular. Não interfere no cartão. */
+.browser-tip { display: none; }
 @media (max-width: 600px) {
-  body { padding-top: 116px; }
-  .browser-tip { top: 24px; right: 12px; width: min(310px, calc(100vw - 24px)); }
+  body { padding-top: 104px; }
+  .browser-tip {
+    display: block;
+    position: fixed;
+    z-index: 20;
+    top: 23px;
+    right: 12px;
+    width: min(285px, calc(100vw - 24px));
+    padding: 11px 13px;
+    border: 1px solid rgba(246, 158, 209, .55);
+    border-radius: 13px;
+    background: rgba(27, 17, 35, .96);
+    color: #fff8ff;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .28);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    line-height: 1.45;
+    text-align: left;
+  }
+  .browser-tip::before {
+    content: "↗";
+    position: absolute;
+    top: -26px;
+    right: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 28px;
+    line-height: 28px;
+    font-weight: 700;
+    color: #f75a9b;
+    text-shadow: 0 1px 3px rgba(0,0,0,.3);
+  }
+  .tip-heading { display: block; font-weight: 700; color: #ffaddb; margin-bottom: 3px; }
+  .tip-description { display: block; }
+  .browser-tip strong { color: #ffaddb; }
 }
