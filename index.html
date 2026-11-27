@@ -2,121 +2,417 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#140d1c">
-  <meta name="description" content="Acesse os links da Maah Franjuda.">
-  <title>Maah Franjuda</title>
-  <script defer src="./app.js"></script>
-  <script defer src="/_vercel/insights/script.js"></script>
+    <meta charset="UTF-8">
 
-  <link rel="stylesheet" href="./styles.css">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#15090f">
+
+    <meta name="description"
+          content="Conheça os canais oficiais da MAAH.">
+
+    <title>MAAH | Seu espaço especial</title>
+
+    <link rel="stylesheet" href="./styles.css">
+
+    <script src="./app.js" defer></script>
 </head>
 
 <body>
-  <div class="background" aria-hidden="true"></div>
-  <div class="glow one" aria-hidden="true"></div>
-  <div class="glow two" aria-hidden="true"></div>
 
-  <!-- Dica para o menu do navegador interno do Instagram -->
-  <aside class="browser-tip" role="note" aria-label="Dica para abrir no navegador">
-    <span class="tip-heading">Abrir no navegador</span>
-    <span class="tip-description">Se algum link não funcionar, toque nos <strong>três pontinhos</strong> no alto da tela e escolha <strong>“Abrir no navegador”</strong>.</span>
-  </aside>
+    <div class="ambient" aria-hidden="true"></div>
 
-  <main class="container">
-    <section class="card">
+    <main class="landing">
 
-      <!-- Cabeçalho fixo -->
-      <header>
-        <div class="profile-border">
-          <img
-            class="profile"
-            src="./perfil.JPEG"
-            alt="Foto de perfil"
-          >
-        </div>
+        <div class="brand">MAAH</div>
 
-        <p class="eyebrow">SEJA BEM-VINDO(A)</p>
-        <h1>Maah Franjuda</h1>
-      </header>
+        <!-- PRIMEIRA TELA: PRESENTE -->
 
-      <!-- Primeira tela -->
-      <section class="screen active" id="welcomeScreen">
-        <p class="subtitle">
-          Preparei uma prévia para você. ✨
-        </p>
+        <section id="giftScreen" class="gift-screen">
 
-        <button
-          class="preview-button"
-          id="previewButton"
-          type="button"
-          aria-controls="linksScreen"
-        >
-          ✨ Desbloqueie a prévia
-          <span aria-hidden="true">→</span>
-        </button>
-      </section>
+            <p class="eyebrow">
+                EXCLUSIVAMENTE PARA VOCÊ
+            </p>
 
-      <!-- Segunda tela: links de exemplo -->
-      <section
-        class="screen"
-        id="linksScreen"
-        aria-hidden="true"
-      >
-        <button
-          class="back-button"
-          id="backButton"
-          type="button"
-        >
-          ← Voltar
-        </button>
+            <h1>
+                Tenho uma surpresa<br>
+                para você...
+            </h1>
 
-        <p class="subtitle">
-          Escolha uma das opções abaixo para continuar.
-        </p>
+            <button
+                id="giftTouch"
+                class="gift-touch"
+                type="button"
+                aria-label="Abrir presente">
 
-        <nav
-          class="destination-options"
-          aria-label="Links principais"
-        >
-          <a
-            class="destination-button"
-            href="https://telegram.me/Maah_franjuda_bot"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span class="destination-icon" aria-hidden="true">✨</span>
-            <span class="destination-text">
-              <span class="destination-title">Grupo Vip</span>
-              <span class="destination-description">
-                Acesse a página da comunidade
-              </span>
-            </span>
-            <span class="arrow" aria-hidden="true">›</span>
-          </a>
+                <div id="giftScene" class="gift-scene">
 
-          <a
-            class="destination-button secondary"
-            href="https://privacy.com.br/@maah_franjudinha"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span class="destination-icon" aria-hidden="true">🔒</span>
-            <span class="destination-text">
-              <span class="destination-title">Privacy</span>
-              <span class="destination-description">
-                Visite minha página principal
-              </span>
-            </span>
-            <span class="arrow" aria-hidden="true">›</span>
-          </a>
-        </nav>
-      </section>
+                    <div class="gift-halo"></div>
 
-      <p class="footer">FEITO COM ✦ CARINHO</p>
-    </section>
-  </main>
+                    <div class="gift-shadow"></div>
+
+                    <div class="gift-particles"
+                         aria-hidden="true"></div>
+
+                    <svg class="gift-art"
+                         viewBox="0 0 320 280"
+                         aria-hidden="true">
+
+                        <defs>
+
+                            <linearGradient id="boxFront"
+                                x1="0" y1="0" x2="1" y2="1">
+
+                                <stop offset="0%"
+                                      stop-color="#b65370"/>
+
+                                <stop offset="50%"
+                                      stop-color="#702438"/>
+
+                                <stop offset="100%"
+                                      stop-color="#431321"/>
+
+                            </linearGradient>
+
+                            <linearGradient id="boxSide">
+
+                                <stop offset="0%"
+                                      stop-color="#702438"/>
+
+                                <stop offset="100%"
+                                      stop-color="#310d1b"/>
+
+                            </linearGradient>
+
+                            <linearGradient id="goldRibbon">
+
+                                <stop offset="0%"
+                                      stop-color="#986052"/>
+
+                                <stop offset="25%"
+                                      stop-color="#d4a295"/>
+
+                                <stop offset="50%"
+                                      stop-color="#ffe5cf"/>
+
+                                <stop offset="75%"
+                                      stop-color="#d4a295"/>
+
+                                <stop offset="100%"
+                                      stop-color="#a16b5e"/>
+
+                            </linearGradient>
+
+                            <radialGradient id="innerLight">
+
+                                <stop offset="0%"
+                                      stop-color="#fff1d9"/>
+
+                                <stop offset="50%"
+                                      stop-color="#e5ad91"/>
+
+                                <stop offset="100%"
+                                      stop-color="#d4a295"
+                                      stop-opacity="0"/>
+
+                            </radialGradient>
+
+                        </defs>
+
+                        <!-- CORPO DO PRESENTE -->
+
+                        <g class="gift-body">
+
+                            <path
+                                d="M76 120H207V239H76Z"
+                                fill="url(#boxFront)"
+                                stroke="#bd897e"/>
+
+                            <path
+                                d="M207 120L246 100V219L207 239Z"
+                                fill="url(#boxSide)"
+                                stroke="#986256"/>
+
+                            <path
+                                d="M76 120L115 100H246L207 120Z"
+                                fill="#32101d"
+                                stroke="#b77d70"/>
+
+                            <rect
+                                x="130"
+                                y="120"
+                                width="25"
+                                height="119"
+                                fill="url(#goldRibbon)"/>
+
+                            <path
+                                d="M221 113L234 106V225L221 232Z"
+                                fill="#bd8b7b"/>
+
+                        </g>
+
+                        <!-- LUZ INTERNA -->
+
+                        <ellipse
+                            class="gift-inner-light"
+                            cx="160"
+                            cy="116"
+                            rx="105"
+                            ry="65"
+                            fill="url(#innerLight)"/>
+
+                        <!-- TAMPA E LAÇO -->
+
+                        <g class="gift-lid">
+
+                            <path
+                                d="M160 92C65 82 83 7 127 48Q149 67 160 92"
+                                stroke="url(#goldRibbon)"
+                                stroke-width="14"
+                                fill="none"/>
+
+                            <path
+                                d="M160 92C255 82 237 7 193 48Q171 67 160 92"
+                                stroke="url(#goldRibbon)"
+                                stroke-width="14"
+                                fill="none"/>
+
+                            <path
+                                d="M150 86Q119 106 112 145L132 132L145 143L166 88"
+                                fill="url(#goldRibbon)"/>
+
+                            <path
+                                d="M170 86Q201 106 208 145L188 132L175 143L154 88"
+                                fill="url(#goldRibbon)"/>
+
+                            <path
+                                d="M65 98H207L256 76H114Z"
+                                fill="#b65a71"
+                                stroke="#d4a295"/>
+
+                            <path
+                                d="M65 98H207V128H65Z"
+                                fill="url(#boxFront)"
+                                stroke="#d4a295"/>
+
+                            <path
+                                d="M207 98L256 76V106L207 128Z"
+                                fill="#5b1d31"
+                                stroke="#b77d70"/>
+
+                            <path
+                                d="M130 98H155V128H130Z"
+                                fill="url(#goldRibbon)"/>
+
+                            <path
+                                d="M130 98L179 76H204L155 98Z"
+                                fill="url(#goldRibbon)"/>
+
+                            <ellipse
+                                cx="160"
+                                cy="87"
+                                rx="12"
+                                ry="9"
+                                fill="url(#goldRibbon)"/>
+
+                        </g>
+
+                    </svg>
+
+                    <div class="gift-stars"
+                         aria-hidden="true"></div>
+
+                </div>
+
+            </button>
+
+            <button id="openGift"
+                    class="open-gift"
+                    type="button">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.5"
+                     aria-hidden="true">
+
+                    <rect x="3" y="8"
+                          width="18" height="4" rx="1"/>
+
+                    <path d="M5 12v9h14v-9M12 8v13"/>
+
+                    <path d="M12 8C3 8 5 1 9 4l3 4C21 8 19 1 15 4l-3 4"/>
+
+                </svg>
+
+                <span id="giftButtonText">
+                    ABRIR PRESENTE
+                </span>
+
+            </button>
+
+            <p class="gift-hint">
+                Toque para descobrir
+            </p>
+
+        </section>
+
+        <!-- SEGUNDA TELA: FOTO E BOTÕES -->
+
+        <section id="revealScreen"
+                 class="reveal-screen"
+                 hidden>
+
+            <div class="portrait">
+
+                <img
+                    id="profilePhoto"
+                    src="./perfil.JPEG"
+                    alt="Foto de perfil da MAAH">
+
+                <span id="profileFallback" hidden>M</span>
+
+            </div>
+
+            <p class="eyebrow">
+                EXCLUSIVAMENTE PARA VOCÊ
+            </p>
+
+            <h1 id="revealTitle" tabindex="-1">
+                Você chegou até aqui...
+            </h1>
+
+            <p class="intro-text">
+                Escolha como deseja me conhecer.
+            </p>
+
+            <nav aria-label="Canais oficiais">
+
+                <!-- BOTÃO VIP -->
+
+                <a id="vipLink"
+                   class="premium vip"
+                   href="https://telegram.me/Maah_franjuda_bot"
+                   rel="noopener noreferrer">
+
+                    <span class="symbol">
+
+                        <svg viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="1.5"
+                             aria-hidden="true">
+
+                            <path d="M2 8l5 4 5-8 5 8 5-4-3 12H5L2 8Z"/>
+
+                            <path d="M5 17h14"/>
+
+                        </svg>
+
+                    </span>
+
+                    <span class="button-copy">
+
+                        <strong>VIP DA MAAH</strong>
+
+                        <small>
+                            Seu espaço exclusivo no Telegram.
+                        </small>
+
+                    </span>
+
+                    <span class="arrow">›</span>
+
+                </a>
+
+                <!-- BOTÃO PRIVACY -->
+
+                <a id="privacyLink"
+                   class="premium privacy"
+                   href="https://privacy.com.br/@maah_franjudinha"
+                   rel="noopener noreferrer">
+
+                    <span class="symbol">
+
+                        <svg viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="1.5"
+                             aria-hidden="true">
+
+                            <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0l-1 1-1-1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/>
+
+                        </svg>
+
+                    </span>
+
+                    <span class="button-copy">
+
+                        <strong>CONHECER MEU PRIVACY</strong>
+
+                        <small>Conheça meu conteúdo.</small>
+
+                    </span>
+
+                    <span class="arrow">›</span>
+
+                </a>
+
+            </nav>
+
+            <!-- COPIAR LINK -->
+
+            <section class="external">
+
+                <button id="copyLink"
+                        class="utility-button"
+                        type="button">
+
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="1.5"
+                         aria-hidden="true">
+
+                        <rect x="8" y="8"
+                              width="12" height="12" rx="2"/>
+
+                        <path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/>
+
+                    </svg>
+
+                    <span id="copyText">
+                        COPIAR LINK DO SITE
+                    </span>
+
+                </button>
+
+                <p id="feedback"
+                   class="feedback"
+                   role="status"></p>
+
+                <input id="manualCopy"
+                       class="manual-copy"
+                       type="text"
+                       aria-label="Endereço do site"
+                       readonly
+                       hidden>
+
+            </section>
+
+        </section>
+
+        <footer>
+            © <span id="year">2026</span> MAAH
+            · Canais oficiais
+        </footer>
+
+    </main>
+
+    <noscript>
+        Ative o JavaScript para acessar a experiência.
+    </noscript>
 
 </body>
 </html>
